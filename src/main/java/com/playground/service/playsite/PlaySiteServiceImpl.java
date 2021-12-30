@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.Queue;
 
 @Service
 public class PlaySiteServiceImpl implements PlaySiteService {
@@ -167,7 +168,7 @@ public class PlaySiteServiceImpl implements PlaySiteService {
     }
 
     @Override
-    public List<Child> retrieveAllFromQueue(long playSiteId) {
+    public Queue<Child> retrieveAllFromQueue(long playSiteId) {
         PlaySite playSite = repository.findById(playSiteId);
         return retrieveQueue(playSite.getPlaySiteType()).retrieveAll();
     }

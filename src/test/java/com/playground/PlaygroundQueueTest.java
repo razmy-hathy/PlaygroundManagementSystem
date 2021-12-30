@@ -9,20 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ComponentScan("com.playground")
-public class PlayGroundQueueTest {
+public class PlaygroundQueueTest {
 
     @Autowired
     private PlayGroundQueue playGroundQueue;
 
     @Test
     void testPlayGroundQueueSorting() {
+        playGroundQueue.removeAll();
         Child[] children = new Child[]{
                 new Child("Tom", 12, new Ticket(TicketType.NORMAL)),
                 new Child("Jimmy", 8, new Ticket(TicketType.VIP)),
@@ -84,12 +85,12 @@ public class PlayGroundQueueTest {
                 new Child("Silva", 15, new Ticket(TicketType.NORMAL)),
                 new Child("Nazeel", 16, new Ticket(TicketType.NORMAL)),
         };
-        List<Child> manualSortedList = new ArrayList<>(manualSortedChildren.length);
+        Queue<Child> manualSortedList = new LinkedList<>();
         for (Child child : manualSortedChildren) {
             manualSortedList.add(child);
         }
         // retrieve children from queue
-        List<Child> childrenFromQueue = playGroundQueue.retrieveAll();
+        Queue<Child> childrenFromQueue = playGroundQueue.retrieveAll();
         // verify the queue sorting order
         assertThat(childrenFromQueue).isEqualTo(manualSortedList);
     }

@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 @Component
@@ -114,13 +112,14 @@ public class PlayGroundQueue {
         }
     }
 
-    public synchronized void removeAll() {
+    public void removeAll() {
         vipQueue.clear();
         normalQueue.clear();
+        lastOutType = null;
     }
 
-    public synchronized List<Child> retrieveAll() {
-        List<Child> children = new ArrayList<>(vipQueue.size() + normalQueue.size());
+    public Queue<Child> retrieveAll() {
+        Queue<Child> children = new LinkedList<>();
         while (!vipQueue.isEmpty() || !normalQueue.isEmpty()) {
             children.add(poll());
         }

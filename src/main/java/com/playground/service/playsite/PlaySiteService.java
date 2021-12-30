@@ -4,6 +4,7 @@ import com.playground.domain.Child;
 import com.playground.domain.PlaySite;
 
 import java.util.List;
+import java.util.Queue;
 
 public interface PlaySiteService {
 
@@ -17,7 +18,7 @@ public interface PlaySiteService {
 
     List<PlaySite> retrieveAllPlaySites();
 
-    List<Child> retrieveAllFromQueue(long playSiteId);
+    Queue<Child> retrieveAllFromQueue(long playSiteId);
 
     PlaySite retrieveById(long id);
 
